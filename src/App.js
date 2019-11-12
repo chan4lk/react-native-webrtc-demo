@@ -11,7 +11,7 @@ YellowBox.ignoreWarnings(['Setting a timer', 'Unrecognized WebSocket connection'
 /* ==============================
  Global variables
  ================================ */
-const url = 'https://42471ad5.ngrok.io';
+const url = 'https://rtcserver.azurewebsites.net';
 const socket = io.connect(url, { transports: ['websocket'] });
 const configuration = { iceServers: [{ urls: 'stun:stun.l.google.com:19302' }] };
 
@@ -88,15 +88,8 @@ const getLocalStream = () => {
   let isFront = true;
   
   let constrains = {
-    audio: false,
-    video: {
-      mandatory: {
-        minWidth: 640,
-        minHeight: 360,
-        minFrameRate: 30,
-      },
-      facingMode: isFront ? 'user' : 'environment',
-    },
+    audio: true,
+    video: false,
   };
   let getStream = stream => {
     localStream = stream;
